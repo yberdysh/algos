@@ -16,3 +16,33 @@ function meetingPlanner(slotsA, slotsB, dur){
   }
   return []
 }
+
+//an O(n) solution:
+function meetingPlanner(slotsA, slotsB, dur){
+  let ia = 0;
+  let ib = 0;
+  while (ia < slotsA.length && ib < slotsB.length){
+    if (slotsA[ia][0] >= slotsB[ib][0]){
+      if (slotsA[ia][0] + dur <= slotsA[ia][1] && slotsA[ia][0] + dur <= slotsB[ib][1]){
+        return [slotsA[ia][0], slotsA[ia][0] + dur]
+      } else {
+        if (slotsA[ia][1] < slotsB[ib][1]){
+          ia++
+        } else {
+          ib++
+        }
+      }
+    } else {
+      if (slotsB[ib][0] + dur <= slotsB[ib][1] && slotsB[ib][0] + dur <= slotsA[ia][1]){
+        return [slotsB[ib][0], slotsB[ib][0] + dur]
+      } else {
+        if (slotsB[ib][1] < slotsA[ia][1]){
+          ib++
+        } else {
+          ia++
+        }
+      }
+    }
+  }
+  return []
+}
