@@ -1,4 +1,6 @@
-let array = [3, 5, 10, 9, 12, 20]
+let array = [3, 5, 9, 10, 12, 20]
+
+
 
 function bubbleSort(arr){
   while (!isSorted(arr)){
