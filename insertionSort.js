@@ -21,6 +21,21 @@ function insertionSort(arr){
   }
   return arr;
 }
+// this isn't as optimized because the first numbers are already sorted. Need to work backwards to optimize
+
+function insertionSortOptimized(arr){
+  for (let i = 1; i < arr.length; i++){
+    let currentVal = arr[i]
+    for (let j = i - 1; j >= 0 && arr[j] > currentVal; j--){
+      arr[j+1] = arr[j]
+      }
+      arr[j+1] = currentVal
+    }
+  return arr;
+  }
+
+  // works well for nearly sorted arrays
+  // works very well when live data is being streamed and coming in
 
 function swap(arr, i, j){
   let temp = arr[i]
