@@ -50,9 +50,11 @@ function selectionSort(arr){
         lowest = j
       }
     }
-    var temp = arr[i]
-    arr[i] = arr[lowest]
-    arr[lowest] = temp
+    if (i !== lowest){
+      var temp = arr[i]
+      arr[i] = arr[lowest]
+      arr[lowest] = temp
+    }
   }
   return arr;
 }
