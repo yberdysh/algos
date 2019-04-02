@@ -26,12 +26,27 @@ function insertionSort(arr){
 function insertionSortOptimized(arr){
   for (let i = 1; i < arr.length; i++){
     let currentVal = arr[i]
-    for (let j = i - 1; j >= 0 && arr[j] > currentVal; j--){
+    for (var j = i - 1; j >= 0 && arr[j] > currentVal; j--){
+      //if j > current, need to sort
       arr[j+1] = arr[j]
       }
       arr[j+1] = currentVal
     }
   return arr;
+  }
+
+  // es6 implementation
+  insertionSort(arr) {
+    for(let i = 1; i < arr.length; i++){
+      let current = arr[i];
+      let j = i - 1;
+      while(j >= 0 && arr[j] > current){
+        arr[j + 1] = arr[j];
+        j--;
+      }
+      arr[j + 1] = current;
+    }
+    return arr;
   }
 
   // works well for nearly sorted arrays
