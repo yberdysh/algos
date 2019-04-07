@@ -11,10 +11,10 @@ function anagrams(an1, an2){
   for (let key in frequencies1){
     // if key doesn't exist in frequencies2, return false
     if (!frequencies1[key]){
-      anagram = false
+      return false
     }
     if (frequencies1[key] !== frequencies2[key]){
-      anagram = false
+      return false
     }
   }
   return true;
