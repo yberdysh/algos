@@ -2,7 +2,7 @@
 // finding a max subArray sum
 // get an array and n, calculate the max sum of consecutive n elements in the array
 
-// naive approach
+// naive approach, O(n)^2
 function maxSubarraySum(arr, n){
   if (n > arr.length) return null
   let max = -Infinity;
@@ -20,6 +20,7 @@ function maxSubarraySum(arr, n){
   return max
 }
 
+// O(n) - sliding window!
 function creativeApproach(arr, n){
   if (n > arr.length) return null
     let leftMost = 0
@@ -36,4 +37,21 @@ function creativeApproach(arr, n){
     return max
   }
 
-console.log(creativeApproach([1, 2, 5, 2, 8, 1, 5], 4))
+// about same as mine
+  function udemyApproach(arr, num){
+    let maxSum = 0;
+    let tempSum = 0;
+    if (arr.length < num) return null
+      // loop from 0 to n to get initial sum
+    for (let i = 0; i < num; i++){
+      maxSum += arr[i]
+    }
+    tempSum = maxSum
+    for (let i = num; i < arr.length; i++){
+      tempSum = tempSum - arr[i - num] + arr[i];
+      maxSum = Math.max(maxSum, tempSum)
+    }
+    return maxSum
+  }
+
+console.log(udemyApproach([1, 2, 5, 2, 8, 1, 5], 4))
