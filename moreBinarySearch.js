@@ -25,6 +25,32 @@ class Tree {
       this[direction].insert(num)
     }
   }
+// recursive
+  // find(num){
+  //   let direction = num < this.value ? "left" : "right"
+  //   if (this.value === num){
+  //     return true
+  //   } else if (!this[direction]){
+  //     return false
+  //   } else {
+  //     return this[direction].find(num)
+  //   }
+  // }
+
+// iterative
+  find(num){
+    let direction = num < this.value ? "left" : "right"
+    let current = this
+    // if current.value === num return true
+    while (current){
+      if (current.value === num){
+        return true
+      } else {
+        current = current[direction]
+      }
+    }
+    return false
+  }
 
 }
 
@@ -38,6 +64,7 @@ newTree.left = new Tree(5)
 newTree.left.left = new Tree(1)
 newTree.left.right = new Tree(7)
 
-newTree.insert(12)
-console.log(newTree)
+newTree.insert(131)
+
+console.log(newTree.find(131))
 
