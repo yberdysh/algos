@@ -4,7 +4,8 @@
 
 // naive approach
 function maxSubarraySum(arr, n){
-  let max = 0;
+  if (n > arr.length) return null
+  let max = -Infinity;
   for (let i = 0; i <= arr.length - n; i++){
     let sum = arr[i];
     let count = 1
@@ -19,4 +20,20 @@ function maxSubarraySum(arr, n){
   return max
 }
 
-console.log(maxSubarraySum([1, 2, 5, 2, 8, 1, 5], 4))
+function creativeApproach(arr, n){
+  if (n > arr.length) return null
+    let leftMost = 0
+    let sum = arr.slice(0, n).reduce((a, b) => a + b)
+    let max = sum;
+    for (let i = n; i < arr.length; i++){
+      sum -= arr[leftMost]
+      sum += arr[i]
+      leftMost++
+      if (sum > max){
+        max = sum
+      }
+    }
+    return max
+  }
+
+console.log(creativeApproach([1, 2, 5, 2, 8, 1, 5], 4))
