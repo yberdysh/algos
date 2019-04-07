@@ -13,9 +13,14 @@ function anagrams(an1, an2){
     if (!frequencies1[key]){
       return false
     }
-    if (frequencies1[key] !== frequencies2[key]){
-      return false
+    // cool way:
+    else {
+      frequencies1[key]--
     }
+    // if (frequencies1[key] !== frequencies2[key]){
+    //   return false
+    // }
+
   }
   return true;
 }
