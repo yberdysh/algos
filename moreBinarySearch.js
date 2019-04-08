@@ -74,20 +74,41 @@ class Tree {
     return final
   }
 
+// with helper function recursion:
+  // preOrderTraversal(){
+  //   let nodes = []
+  //   function traverse(node){
+  //     nodes.push(node.value)
+  //     if (node.left) traverse(node.left)
+  //     if (node.right) traverse(node.right)
+  //   }
+  //   traverse(this)
+  //   return nodes
+  // }
+
+preOrderTraversal(){
+    let nodes = []
+    nodes.push(this.value)
+    if (this.left) {
+      // same as nodes.push(...this.left.preOrderTraversal())
+      nodes = nodes.concat(this.left.preOrderTraversal())
+    }
+    if (this.right) {
+      nodes = nodes.concat(this.right.preOrderTraversal())
+    }
+    return nodes
+  }
+
 }
 
 
 let newTree = new Tree(10)
-newTree.right = new Tree(15)
-newTree.right.right = new Tree(17)
-newTree.right.left = new Tree(13)
+newTree.insert(15)
+newTree.insert(20)
+newTree.insert(6)
+newTree.insert(8)
+newTree.insert(3)
 
-newTree.left = new Tree(5)
-newTree.left.left = new Tree(1)
-newTree.left.right = new Tree(7)
-
-// newTree.insert(131)
-
-// console.log(newTree.find(131))
-console.log(newTree.breadthFirstSearch())
+// console.log(newTree)
+console.log(newTree.preOrderTraversal())
 
