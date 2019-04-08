@@ -99,6 +99,75 @@ preOrderTraversal(){
     return nodes
   }
 
+  // postOrderTraversal(){
+  //   let arr = []
+  //   if (this.left){
+  //     // arr = arr.concat(this.left.postOrderTraversal())
+  //     arr.push(...this.left.postOrderTraversal())
+  //   }
+  //   if (this.right){
+  //     // arr = arr.concat(this.right.postOrderTraversal())
+  //     arr.push(...this.right.postOrderTraversal())
+  //   }
+  //   arr.push(this.value)
+  //   return arr;
+  // }
+
+  postOrderTraversal(array){
+    // console.log(array)
+    if (this.left){
+      // arr = arr.concat(this.left.postOrderTraversal())
+      this.left.postOrderTraversal(array)
+    }
+    if (this.right){
+      // arr = arr.concat(this.right.postOrderTraversal())
+      this.right.postOrderTraversal(array)
+    }
+    array.push(this.value)
+    return array;
+  }
+
+  // inOrderTraverse(){
+  //   // push left, push root, push right
+  //   let nodes = []
+  //   function traverse(node){
+  //     if (node.left) traverse(node.left)
+  // or node.left && traverse(node.left)
+  //     nodes.push(node.value)
+  //     if (node.right) traverse(node.right)
+  //   }
+  // traverse(this)
+  // return nodes
+  // }
+
+  // inOrderTraverse(){
+  //   // push left, push root, push right
+  //   let nodes = []
+  //   if (this.left) {
+  //     // nodes.push(...this.left.inOrderTraverse())
+  //     nodes = nodes.concat(this.left.inOrderTraverse())
+  //   }
+  //     nodes.push(this.value)
+  //     if (this.right) {
+  //      nodes = nodes.concat(this.right.inOrderTraverse())
+  //     }
+  // return nodes
+  // }
+
+  inOrderTraverse(arr){
+    // push left, push root, push right
+    // let nodes = []
+    if (this.left) {
+      // nodes.push(...this.left.inOrderTraverse())
+      this.left.inOrderTraverse(arr)
+    }
+      arr.push(this.value)
+      if (this.right) {
+       this.right.inOrderTraverse(arr)
+      }
+  return arr
+  }
+
 }
 
 
@@ -110,5 +179,5 @@ newTree.insert(8)
 newTree.insert(3)
 
 // console.log(newTree)
-console.log(newTree.preOrderTraversal())
+console.log(newTree.inOrderTraverse([]))
 
