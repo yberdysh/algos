@@ -32,3 +32,5 @@ function makeFrequencyHash(string){
   }
   return frequencies
 }
+
+
