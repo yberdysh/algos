@@ -52,6 +52,28 @@ class Tree {
     return false
   }
 
+  breadthFirstSearch(){
+    let final = []
+    let queue = []
+    queue.push(this)
+    // add root to queue
+    // loop for as long as anything in queue
+    // dequeue and store in final
+    // if there's a left property on value dequeued, add to queue
+    // same with right
+    while (queue.length){
+      let dequeuedNode = queue.shift()
+      final.push(dequeuedNode.value)
+      if (dequeuedNode.left){
+        queue.push(dequeuedNode.left)
+      }
+      if (dequeuedNode.right){
+        queue.push(dequeuedNode.right)
+      }
+    }
+    return final
+  }
+
 }
 
 
@@ -64,7 +86,8 @@ newTree.left = new Tree(5)
 newTree.left.left = new Tree(1)
 newTree.left.right = new Tree(7)
 
-newTree.insert(131)
+// newTree.insert(131)
 
-console.log(newTree.find(131))
+// console.log(newTree.find(131))
+console.log(newTree.breadthFirstSearch())
 
