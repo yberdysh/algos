@@ -62,32 +62,88 @@ class MaxBinaryHeap{
     return this.values
   }
 
+  extractMax(){
+    // debugger;
+    let root = this.values[0]
+    let parent = this.values.pop()
+    this.values[0] = parent
+    let parentSpot = 0
+    let leftChild = 2*parentSpot + 1
+    let rightChild = 2*parentSpot + 2
+    let temp = parent
+    while (this.values[leftChild] > parent || this.values[rightChild] > parent){
+      if (this.values[leftChild] > parent && this.values[rightChild] > parent){
+        let greatestChild = this.values[leftChild] > this.values[rightChild] ? leftChild : rightChild
+        // swap with that one
+        // console.log(this.values)
+        this.values[parentSpot] = this.values[greatestChild]
+        this.values[greatestChild] = parent
+        parentSpot = greatestChild
+        leftChild = parentSpot*2 + 1
+        rightChild = parentSpot*2 + 2
+      } else {
+        let greatOne = this.values[leftChild] > parent ? leftChild : rightChild
+        // swap with great one
+        this.values[parentSpot] = this.values[greatOne]
+        this.values[greatOne] = parent
+        parentSpot = greatOne
+        leftChild = parentSpot*2 + 1
+        rightChild = parentSpot*2 + 2
+      }
+
+    }
+    return root
+
+    // removes root
+    // swaps first element (largest) with last
+    // then call sinkDown, compare 12 to children
+    // swap with one of the children
+    // swap with larger one
+    // return what we removed
+  }
+
   // udemy Solution:
-      insert(element){
-        this.values.push(element);
-        this.bubbleUp();
-    }
-    bubbleUp(){
-        let idx = this.values.length - 1;
-        const element = this.values[idx];
-        while(idx > 0){
-            let parentIdx = Math.floor((idx - 1)/2);
-            let parent = this.values[parentIdx];
-            if(element <= parent) break;
-            this.values[parentIdx] = element;
-            this.values[idx] = parent;
-            idx = parentIdx;
-        }
-    }
+    //   insert(element){
+    //     this.values.push(element);
+    //     this.bubbleUp();
+    // }
+    // bubbleUp(){
+    //     let idx = this.values.length - 1;
+    //     const element = this.values[idx];
+    //     while(idx > 0){
+    //         let parentIdx = Math.floor((idx - 1)/2);
+    //         let parent = this.values[parentIdx];
+    //         if(element <= parent) break;
+    //         this.values[parentIdx] = element;
+    //         this.values[idx] = parent;
+    //         idx = parentIdx;
+    //     }
+    // }
 }
 
 let heap = new MaxBinaryHeap
 heap.insert(41)
-heap.insert(39)
 heap.insert(33)
-heap.insert(18)
+heap.insert(39)
 heap.insert(27)
-heap.insert(12)
-console.log(heap.insert(55))
+heap.insert(18)
+heap.insert(20)
+// [41, 39, 33, 18, 27, 12]
+//         41
+//     33      39
+//   27  18   20
+// [41, 33, 39, 27, 18, 20]
+//         39
+//     33      20
+//   27  18
+// [39, 33, 20, 27, 18]
+// console.log(heap.insert(55))
+//         39
+//     27      33
+//   18  20
+// [39, 27, 33, 18, 20]
+
+heap.extractMax()
+console.log(heap.values)
 
 
