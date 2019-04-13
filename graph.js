@@ -38,18 +38,21 @@ class Graph {
 	BFS(startVertex) {
 		let queue = []
 		let result = []
-		let processedSet = new Set()
+		let visited = new Set([startVertex])
 		queue.push(startVertex)
 		while (queue.length) {
 			let vertex = queue.shift()
-			result.push(vertex)
-			processedSet.add(vertex)
-			adjacencyList[vertex].forEach(v => {
-				if (!processedSet.has(v)) {
-					queue.push(v)
-				}
-			})
+			// if (!visited.has(vertex)){
+				result.push(vertex)
+				this.adjacencyList[vertex].forEach(v => {
+					if (!visited.has(v)) {
+						visited.add(v)
+						queue.push(v)
+					}
+				})
+			// }
 		}
+		return result
 	}
 
 	DFSrecursive(vertex) {
@@ -187,7 +190,8 @@ graph.addEdge("Jakarta", "Sydney")
 // graph.addEdge("E", "F")
 
 console.log(graph.adjacencyList)
-console.log("recursive", graph.depthFirstRecursive("Sydney"))
+// console.log("recursive", graph.depthFirstRecursive("Sydney"))
 // [sydney, manila, taipei, shaghai, beijing, seoul, tokyo, osaka, hong kong, ho chi minh, bangkok, jakarta]
-console.log("iterative", graph.DFSIterative("Sydney"))
+// console.log("iterative", graph.DFSIterative("Sydney"))
+console.log(graph.BFS("Hong Kong"))
 
