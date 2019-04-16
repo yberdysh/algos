@@ -20,8 +20,8 @@ function balancedBrackets(string) {
         stack.push(string[i])
       }
     }
-    return stack.length === 0
   }
+  return stack.length === 0
 }
 
 let brackets = "(()())((()()()))"
