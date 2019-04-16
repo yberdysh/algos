@@ -26,31 +26,32 @@ class Tree {
     }
   }
 // recursive
-  // find(num){
-  //   let direction = num < this.value ? "left" : "right"
-  //   if (this.value === num){
-  //     return true
-  //   } else if (!this[direction]){
-  //     return false
-  //   } else {
-  //     return this[direction].find(num)
-  //   }
-  // }
-
-// iterative
   find(num){
     let direction = num < this.value ? "left" : "right"
-    let current = this
-    // if current.value === num return true
-    while (current){
-      if (current.value === num){
-        return true
-      } else {
-        current = current[direction]
-      }
+    if (this.value === num){
+      return true
+    } else if (!this[direction]){
+      return false
+    } else {
+      return this[direction].find(num)
     }
-    return false
   }
+
+// iterative
+  // find(num){
+  //   debugger;
+  //   let current = this
+  //   // if current.value === num return true
+  //   while (current){
+  //   let direction = num < this.value ? "left" : "right"
+  //     if (current.value === num){
+  //       return true
+  //     } else {
+  //       current = current[direction]
+  //     }
+  //   }
+  //   return false
+  // }
 
   breadthFirstSearch(){
     let final = []
@@ -168,8 +169,28 @@ preOrderTraversal(){
   return arr
   }
 
+  findSmallestNode(){
+    if (!this.left) return this
+      return this.left.findSmallestNode()
+  }
+
+  delete(){
+    if (!this.right){
+      let smallestNode = this.right.findSmallestNode();
+      smallest.right = this.right
+      smallest.left = this.left
+    }
+  }
+
+  remove(value, parent = null){
+    if (value < this.value){
+      if
+    }
+  }
+
 }
 
+// for deletion- we act on the node we want to delete, we find the smallest value in it's right subtree (the smallest value of everything bigger than it), and we replace it with that node. Then we delete that node later down
 
 let newTree = new Tree(10)
 newTree.insert(15)
@@ -177,7 +198,8 @@ newTree.insert(20)
 newTree.insert(6)
 newTree.insert(8)
 newTree.insert(3)
+console.log(newTree.right.findSmallestNode())
 
-// console.log(newTree)
-console.log(newTree.inOrderTraverse([]))
+console.log(newTree)
+// console.log(newTree.inOrderTraverse([]))
 
